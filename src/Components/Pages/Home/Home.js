@@ -1,9 +1,17 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
+
+import Header from '../../Header/Header';
+import Footer from '../../Footer/Footer';
 
 
 const Home = () => {
   return(
-    <p>Contenido del home page.</p>
+    <Container>
+      <Header/>
+        <p>home</p>
+      <Footer/>
+    </Container>
   );
 }
 

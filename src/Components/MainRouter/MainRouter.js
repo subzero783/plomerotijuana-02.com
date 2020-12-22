@@ -7,8 +7,18 @@ import {
   Link
 } from "react-router-dom";
 
-import Main from '../Main/Main';
+import Home from '../Pages/Home/Home';
+import About from '../Pages/About/About';
 
+const pages = [{
+  path: '/',
+  name: 'Pagina principal',
+  component: Home
+},{
+  path: '/about',
+  name: 'Sobre Nosotros',
+  component: About
+}];
 class MainRouter extends React.Component{
 
   render(){
@@ -16,24 +26,25 @@ class MainRouter extends React.Component{
       <Router> 
         <nav>
           <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/servicios">Servicios</Link>
-            </li>
-            <li>
-              <Link to="/nosotros">Nosotros</Link>
-            </li>
-            <li>
-              <Link to="/contacto">Contacto</Link>
-            </li>
+            {
+              pages.map(item => (
+                <li>
+                  <Link exact to={item.path}>{item.name}</Link>
+                </li>
+              ))
+            }
           </ul>
         </nav>
         <Switch>
-          <Route path="/:handle">
-            <Main/>
-          </Route>
+          { 
+            pages.map(item => (
+              <Route 
+                exact 
+                path={item.path} 
+                component={item.component}
+              />
+            ))
+          }
         </Switch>
       </Router>
     );
